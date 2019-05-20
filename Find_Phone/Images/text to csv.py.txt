@@ -1,0 +1,30 @@
+import csv
+
+
+import xlwt
+
+wbk = xlwt.Workbook()
+sheet = wbk.add_sheet('cell_data')
+sheet.write(0,0,'filename')
+sheet.write(0,1,'width')
+sheet.write(0,2,'height')
+sheet.write(0,3,'class')
+sheet.write(0,4,'xmin')
+sheet.write(0,5,'ymin')
+sheet.write(0,6,'xmax')
+sheet.write(0,7,'ymax')
+
+row = 1
+f = open('labels.txt')
+for line in f:
+    lst = line.split(' ')
+    sheet.write(row,0,lst[0])
+    sheet.write(row,1,1)
+    sheet.write(row,2,1)
+    sheet.write(row,3,'watch')
+    sheet.write(row,4,0)
+    sheet.write(row,5,0)    
+    sheet.write(row,6,lst[1])
+    sheet.write(row,7,lst[2])
+    row += 1
+wbk.save('reformatted.data.xls')
